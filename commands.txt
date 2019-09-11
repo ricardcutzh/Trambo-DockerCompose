@@ -1,0 +1,1 @@
+docker build -t ricardcutzh/flask-ri:1.0 .

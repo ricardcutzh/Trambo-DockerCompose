@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  database:
+    image: redis
+    container_name: redis-server
+    networks:
+      - ejercicio5
+  app:
+    #image: trambopython:1.0
+    build:
+      context: ./Python
+    container_name: flask-app
+    ports:
+      - "8000:8000"
+    links:
+      - database
+
+    networks:
+      - ejercicio5
+  
+  static:
+    #image: trambostatic:1.0
+    build:
+      context: ./Nginx
+    container_name: static_server
+    networks:
+      - ejercicio5
+    ports:
+      - "8001:80"
+  
+  proxy:
+    #image: tramboproxy:1.0
+    build:
+      context: ./Nginx_Proxy
+    container_name: proxy_server
+    ports:
+      - "80:80"
+    networks:
+      - ejercicio5
+    links:
+      - static
+      - app
+  
+networks:
+    ejercicio5:
+      driver: bridge

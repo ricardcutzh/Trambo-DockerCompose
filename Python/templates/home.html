@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--ALL REFERENCES HERE-->
+    <link rel="stylesheet" href="http://localhost/static/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <br>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Flask App</h1>
+            <p class="lead">This is a simple flask app to save notes</p>
+            <p>Ricardo Cutz H.</p>
+        </div>
+        <form action="/Note" method="POST">
+            <div class="form-group">
+                <label for="NTitle">Enter a title for your Note:</label>
+                <input type="text" class="form-control" id="NTitle" name="NTitle" placeholder="Note Title">
+            </div>
+            <div class="form-group">
+                <label for="">Enter Text:</label>
+                <textarea type="text" class="form-control" id="NText" name="NText" placeholder="Enter email"> </textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+    <br>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Note</th>
+                    <th scope="col">Content</th>
+                </tr>
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{d}}</td>
+                    <td>{{data[d]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</body>
+
+</html>
